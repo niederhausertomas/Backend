@@ -26,7 +26,7 @@ class ProductManager{
     }
 
     validarCampos = (title, description, price, thumbnail, code, stock) =>{
-        if(title== (undefined||"") || description==(undefined||"") || price==(undefined||"") || thumbnail==(undefined||"") || code==(undefined||"")|| stock==(undefined||"")){
+        if(title== undefined || title=="" || description == undefined || description == "" || price == undefined ||price == "" || thumbnail== undefined || thumbnail== "" || code== undefined || code== "" || stock == undefined || stock == ""){
             return false;
         }else{
             return true;
@@ -57,13 +57,9 @@ class ProductManager{
     }
 }
 
-const productManager = new ProductManager()
+const manager = new ProductManager ()
 
+manager.addProduct("Producto numero 1", "Esta es la descripcion del producto 1", 100, "FotoProduct1.jpg", 1)
+manager.addProduct("Producto numero 2", "Esta es la descripcion del producto 2", 200, "FotoProduct2.jpg", 2, 2)
 
-productManager.addProduct ("manzana", "fruta", 10, "./imagenes/imagenes1.jpg", 1, 20);
-productManager.addProduct ("tomate", "fruta", 5, "./imagenes/imagenes2.jpg", 2, 10);
-productManager.addProduct ("pera", "verdura", 5, "./imagenes/imagenes2.jpg", 3, 10);
-productManager.addProduct ("papa", "verdura", 5, "./imagenes/imagenes4.jpg", 1, 10);
-console.log(productManager.getProductById(8));
-
-console.log(productManager.getProducts()) 
+console.log(manager.products);
