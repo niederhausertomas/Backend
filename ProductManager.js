@@ -13,8 +13,8 @@ class ProductManager {
         return count > 0 ? products[count-1].id + 1 : 1;
     }
 
-    validarCode2 = (code) =>{
-        let products = this.getProducts();
+    validarCode2 = async (code) =>{
+        let products = await this.getProducts();
         console.log(products.length);
     }
 
@@ -94,7 +94,7 @@ class ProductManager {
     deleteProduct = async (id) => {
         const products = await this.getProducts()
         const filter = products.filter(prod => prod.id !== id)
-        fs.promises.writeFile(this.path, JSON.stringify(filter))
+        .then(filter=> fs.promises.writeFile(this.path, JSON.stringify(filter)))
 
     }
 
@@ -102,8 +102,8 @@ class ProductManager {
 
 async function run() {
     const manager = new ProductManager('productos.json')
-    //await manager.addProduct("Producto numero 1", "Esta es la descripcion del producto 1", 200, "FotoProduct2.jpg", 7, 1)
-    await manager.deleteProduct(3);
+    await manager.addProduct("Producto numero 1", "Esta es la descripcion del producto 1", 200, "FotoProduct2.jpg", 18, 1)
+    //await manager.deleteProduct(3);
     //await manager.updateProduct(3, "code", 9)
     console.log( await manager.getProducts() );
     //console.log(await manager.getProductById(1))
